@@ -37,6 +37,43 @@ public class AuthorController {
         return ResponseEntity.ok(author);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Author> updateAuthor(@PathVariable String id, @RequestBody Author authorDetails) {
+        Author existingAuthor = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
+
+        // uppdatera egenskaper
+        existingAuthor.setName(authorDetails.getName());
+        existingAuthor.setDescription(authorDetails.getDescription());
+
+        return ResponseEntity.ok(authorRepository.save(existingAuthor));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Author> deleteAuthor(@PathVariable String id) {
+        if(!authorRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found");
+        }
+
+        authorRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
