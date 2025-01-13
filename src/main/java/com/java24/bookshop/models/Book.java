@@ -1,5 +1,6 @@
 package com.java24.bookshop.models;
 
+import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,17 +9,28 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Book {
     @Id
     private String id;
+    @NotNull(message = "Title can not be null")
+    @NotEmpty(message = "Title can no be empty")
     private String title;
+
+    @Min(value = 20, message = "A book must have at least 20 pages")
     private int pages;
+
+    @NotNull(message = "Description can not be null")
+    @NotEmpty(message = "Description can no be empty")
     private String description;
 
     @DBRef
+    @NotNull(message = "Author should not be null")
     private Author author;
 
     @DBRef
     private Author coAuthor;
 
+    @PositiveOrZero(message = "Price can not be negative number")
+    @Positive(message = "Price must be greater than 0")
     private double priceExVat;
+
     private String isbn;
     private String bookCoverUrl;
 

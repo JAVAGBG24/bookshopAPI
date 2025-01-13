@@ -2,6 +2,7 @@ package com.java24.bookshop.controllers;
 
 import com.java24.bookshop.models.Author;
 import com.java24.bookshop.repositories.AuthorRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthorController {
 
     // HTTP POST METOD
     @PostMapping
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
+    public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author) {
         Author savedAuthor = authorRepository.save(author);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
