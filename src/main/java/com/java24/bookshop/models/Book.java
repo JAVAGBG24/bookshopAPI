@@ -14,7 +14,7 @@ public class Book {
     private String title;
 
     @Min(value = 20, message = "A book must have at least 20 pages")
-    private int pages;
+    private Integer pages;
 
     @NotNull(message = "Description can not be null")
     @NotEmpty(message = "Description can no be empty")
@@ -29,9 +29,16 @@ public class Book {
 
     @PositiveOrZero(message = "Price can not be negative number")
     @Positive(message = "Price must be greater than 0")
-    private double priceExVat;
+    private Double priceExVat;
 
+    @Pattern(
+            regexp = "^\\d{9}[\\d|X]$|^\\d{13}$",
+            message = "ISBN must be either 10 digits (with possible 'X' at end) or 13 digits"
+    )
     private String isbn;
+
+    @NotNull(message = "Book cover url can not be null")
+    @NotEmpty(message = "Book cover url can no be empty")
     private String bookCoverUrl;
 
     public Book() {
@@ -53,13 +60,7 @@ public class Book {
         this.title = title;
     }
 
-    public int getPages() {
-        return pages;
-    }
 
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
 
     public String getDescription() {
         return description;
@@ -85,13 +86,7 @@ public class Book {
         this.coAuthor = coAuthor;
     }
 
-    public double getPriceExVat() {
-        return priceExVat;
-    }
 
-    public void setPriceExVat(double priceExVat) {
-        this.priceExVat = priceExVat;
-    }
 
     public String getIsbn() {
         return isbn;
@@ -107,5 +102,21 @@ public class Book {
 
     public void setBookCoverUrl(String bookCoverUrl) {
         this.bookCoverUrl = bookCoverUrl;
+    }
+
+    public @Min(value = 20, message = "A book must have at least 20 pages") Integer getPages() {
+        return pages;
+    }
+
+    public void setPages(@Min(value = 20, message = "A book must have at least 20 pages") Integer pages) {
+        this.pages = pages;
+    }
+
+    public @PositiveOrZero(message = "Price can not be negative number") @Positive(message = "Price must be greater than 0") Double getPriceExVat() {
+        return priceExVat;
+    }
+
+    public void setPriceExVat(@PositiveOrZero(message = "Price can not be negative number") @Positive(message = "Price must be greater than 0") Double priceExVat) {
+        this.priceExVat = priceExVat;
     }
 }

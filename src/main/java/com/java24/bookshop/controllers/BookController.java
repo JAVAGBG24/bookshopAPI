@@ -1,44 +1,47 @@
 package com.java24.bookshop.controllers;
 
-import com.java24.bookshop.models.Author;
 import com.java24.bookshop.models.Book;
-import com.java24.bookshop.repositories.AuthorRepository;
-import com.java24.bookshop.repositories.BookRepository;
+import com.java24.bookshop.services.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
-    @Autowired
+   /* @Autowired
     private BookRepository bookRepository;
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private AuthorRepository authorRepository;*/
+
+    @Autowired
+    private BookService bookService;
 
     @PostMapping
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+        Book newBook = bookService.createBook(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newBook);
         // om author fylls i - kolla att den finns i db
-        if(book.getAuthor() != null && !authorRepository.existsById(book.getAuthor().getId())) {
+       /* if(book.getAuthor() != null && !authorRepository.existsById(book.getAuthor().getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Author not found");
-        }
+        }*/
 
         // om coAuthor fylls i - kolla att den finns i db
-        if(book.getCoAuthor() != null && !authorRepository.existsById(book.getCoAuthor().getId())) {
+       /* if(book.getCoAuthor() != null && !authorRepository.existsById(book.getCoAuthor().getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CoAuthor not found");
-        }
+        }*/
 
-        Book savedBook = bookRepository.save(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+       /* Book savedBook = bookRepository.save(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);*/
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookRepository.findAll();
         return ResponseEntity.ok(books);
@@ -84,7 +87,7 @@ public class BookController {
         }
         bookRepository.deleteById(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }
 
 
