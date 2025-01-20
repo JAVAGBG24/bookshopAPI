@@ -22,7 +22,6 @@ public class BookController {
     @Autowired
     private AuthorRepository authorRepository;
 
-    // fixa dbref nästa gång
     @PostMapping
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         // om author fylls i - kolla att den finns i db
@@ -86,19 +85,6 @@ public class BookController {
         bookRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

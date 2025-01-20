@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Cosmos",
+    "pages": 461,
+    "description": "The story of fifteen billion years of cosmic evolution transforming matter and life into consciousness, of how science and civilisation grew up together, and of the forces and individuals who helped shape modern science. A story told with Carl Sagan's remarkable ability to make scientific ideas both comprehensible and exciting.",
+    "author": {
+      "id": "677e64cfe4e46c72d4dce5c4"
+    },
+    "priceExVat": 129.0,
+    "isbn": "0349107033",
+    "bookCoverUrl": "https://m.media-amazon.com/images/I/614kchjRC4L._SY522_.jpg"
+  },
+
+  {
+    "title": "The Problems of Philosophy",
+    "pages": 134,
+    "description": "In the following pages I have confined myself in the main to those problems of philosophy in regard to which I thought it possible to say something positive and constructive, since merely negative criticism seemed out of place. For this reason, theory of knowledge occupies a larger space than metaphysics in the present volume, and some topics much discussed by philosophers are treated very briefly, if at all.",
+    "author": {
+      "id": "677e6380e4e46c72d4dce5c0"
+    },
+    "priceExVat": 59.0,
+    "isbn": "1517159458",
+    "bookCoverUrl": "https://m.media-amazon.com/images/I/51BwD-juj8L.jpg"
+  },
+  {
+    "title": "Special Relativity and Classical Field Theory: The Theoretical Minimum",
+    "pages": 448,
+    "description": "In the first two books in his wildly popular The Theoretical Minimum series, world-class physicist Leonard Susskind provided a brilliant first course in classical and quantum mechanics, offering readers not an oversimplified introduction, but the real thing - everything you need to start doing physics, and nothing more. Now, thankfully, Susskind and his former student Art Friedman are back, this time to introduce readers to special relativity and classical field theory. At last, waves, forces and particles will be demystified.",
+    "author": {
+      "id": "677e63c8e4e46c72d4dce5c1"
+    },
+    "coAuthor": {
+      "id": "677e63ede4e46c72d4dce5c2"
+    },
+    "priceExVat": 108.0,
+    "isbn": "0141985011",
+    "bookCoverUrl": "https://m.media-amazon.com/images/I/81mOdhOdghL._SY522_.jpg"
+  }
+]
