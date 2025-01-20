@@ -7,6 +7,9 @@ import com.java24.bookshop.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class BookService {
     @Autowired
@@ -21,9 +24,7 @@ public class BookService {
 
         book.setAuthor(mainAuthor);
 
-
         if (book.getCoAuthor() != null) {
-
             Author coAuthor = getAuthorAndValidate(book.getCoAuthor(), "Co Author");
             book.setCoAuthor(coAuthor);
             validateAuthorCombination(mainAuthor, coAuthor);
@@ -43,6 +44,47 @@ public class BookService {
 
 
     }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Optional<Book> getBookById(String id) {
+        return bookRepository.findById(id);
+    }
+
+    public Book updateBook(String id, Book book) {
+        Book existingBook = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+
+        if (book.getAuthor() != null) {
+            getAuthorAndValidate(existingBook.getAuthor(), "Author");
+        }
+
+        if (book.getCoAuthor() != null) {
+            getAuthorAndValidate(existingBook.getCoAuthor(), "CoAuthor");
+        }
+
+        // här måste vi ha våra setter annars blir alla fält som inte är med null
+
+        return bookRepository.save(existingBook);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private Author getAuthorAndValidate(Author author, String authorType) {
         // första kolla om id är tomt eller null
